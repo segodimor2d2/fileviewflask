@@ -1,0 +1,46 @@
+/* Estilo para las imágenes */
+.imagen {
+    width: 100%; /* Ancho fijo */
+    /*border: 2px solid #ccc; /* Borde alrededor de la imagen */*/
+    border-radius: 10px; /* Esquinas redondeadas */
+    /*margin: 0.4%; /* Espacio alrededor de la imagen */*/
+}
+
+
+/* Estilo para los videos */
+.video {
+    width: 100%; /* Ancho fijo */
+    /*border: 2px solid #ccc; /* Borde alrededor del video */*/
+    border-radius: 10px; /* Esquinas redondeadas */
+    /*margin: 0.3%; /* Espacio alrededor de la imagen */*/
+}
+
+.video-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+
+/* Estilos gerais da paginação */
+.pagination {
+    position: fixed; /* Fixa a paginação na tela */
+    bottom: 20px;    /* Distância do fundo da tela */
+    right: 20px;     /* Distância da borda direita da tela */
+    border-radius: 5px; /* Bordas arredondadas */
+    color: #fff;     /* Cor do texto */
+    z-index: 1000;   /* Garante que fique acima de outros elementos */
+}
+
+/* Estilos dos links de paginação */
+.pagination a {
+    background: rgba(0, 0, 0, 0.8); /* Fundo semitransparente */
+    padding: 10px;   /* Espaçamento interno */
+    color: #fff;         /* Cor do texto dos links */
+    text-decoration: none; /* Remove o sublinhado dos links */
+    margin: 0 5px;       /* Margem entre os links */
+    padding: 5px 20px;   /* Espaçamento interno dos links */
+    border: 1px solid #fff; /* Borda branca ao redor dos links */
+    border-radius: 3px;  /* Bordas arredondadas dos links */
+}

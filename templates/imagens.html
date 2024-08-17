@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Imagens</title>
+    <style>
+        .imagen {
+            width: {{ width }}%;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        {% for imagem in imagens %}
+            <img src="{{ url_for('mostrar_arquivo', nome_arquivo=imagem, media_folder=media_folder) }}" alt="{{ imagem }}" class="imagen">
+        {% endfor %}
+    </div>
+    <div class="pagination">
+        {% if pagina > 1 %}
+            <a href="{{ url_for('imagens', media_folder=media_folder, page=pagina-1, per_page=per_page, width=width) }}">«</a>
+        {% endif %}
+        {% if pagina < total_paginas %}
+            <a href="{{ url_for('imagens', media_folder=media_folder, page=pagina+1, per_page=per_page, width=width) }}">»</a>
+        {% endif %}
+    </div>
+</body>
+</html>
