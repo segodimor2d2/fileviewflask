@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeria de Vídeos</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <title>Vídeos</title>
     <style>
         .video {
             width: {{ width }}%;
@@ -14,20 +14,20 @@
 <body>
     <div>
         {% for video in videos %}
-            <video class="video" controls>
-                <source src="{{ url_for('mostrar_arquivo', nome_arquivo=video) }}" type="video/mp4">
-                Seu navegador não suporta a tag de vídeo.
+            <video src="{{ url_for('mostrar_arquivo', nome_arquivo=video, media_folder=media_folder) }}" controls class="video">
+                Your browser does not support the video tag.
             </video>
         {% endfor %}
     </div>
 
     <div class="pagination">
         {% if pagina > 1 %}
-            <a href="{{ url_for('videos', page=pagina-1, per_page=per_page, width=width) }}">« Página Anterior</a>
+            <a href="{{ url_for('videos', media_folder=media_folder, page=pagina-1, per_page=per_page, width=width) }}">«</a>
         {% endif %}
         {% if pagina < total_paginas %}
-            <a href="{{ url_for('videos', page=pagina+1, per_page=per_page, width=width) }}">Próxima Página »</a>
+            <a href="{{ url_for('videos', media_folder=media_folder, page=pagina+1, per_page=per_page, width=width) }}">»</a>
         {% endif %}
     </div>
+
 </body>
 </html>
