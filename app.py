@@ -50,6 +50,41 @@ def videos():
 
     return render_template('videos.html', videos=videos_pagina, pagina=page, total_paginas=total_paginas, per_page=per_page, width=width, media_folder=media_folder)
 
+@app.route('/view')
+def view():
+    media_folder = request.args.get('media_folder', '/')
+    page = request.args.get('page', 1, type=int)
+    per_page = request.args.get('per_page', PER_PAGE, type=int)
+    width = request.args.get('width', 100, type=int)  # Largura em porcentagem, padrão é 100
+
+    if not os.path.exists(media_folder):
+        return "Diretório não encontrado!", 404
+
+    arquivos = os.listdir(media_folder)
+    
+    # Filtrar imagens e vídeos
+    imagens = [arquivo for arquivo in arquivos if arquivo.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))]
+    videos = [arquivo for arquivo in arquivos if arquivo.lower().endswith(('.mp4', '.avi', '.mov', '.mkv'))]
+    
+    # Combinar e ordenar arquivos (primeiro imagens, depois vídeos)
+    media_files = imagens + videos
+    
+    # Paginação
+    start = (page - 1) * per_page
+    end = start + per_page
+    media_pagina = media_files[start:end]
+    
+    total_media = len(media_files)
+    total_paginas = (total_media // per_page) + (total_media % per_page > 0)
+
+    return render_template('view.html', 
+                         media_files=media_pagina, 
+                         pagina=page, 
+                         total_paginas=total_paginas, 
+                         per_page=per_page, 
+                         width=width, 
+                         media_folder=media_folder)
+
 @app.route('/media/<path:nome_arquivo>')
 def mostrar_arquivo(nome_arquivo):
     media_folder = request.args.get('media_folder', '/')
@@ -59,3 +94,10 @@ def mostrar_arquivo(nome_arquivo):
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
+
+
+
+
+
+
+
